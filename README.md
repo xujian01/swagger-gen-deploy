@@ -2,8 +2,8 @@
 
 一键执行：swagger代码自动生成+发布到maven私有仓库
 
-注意：对于引入了maven依赖的maven项目，想要用java -jar的形式来执行，则需在pom文件配置如下：
-、、、xml
+## 注意：对于引入了maven依赖的maven项目，想要用java -jar的形式来执行，则需在pom文件配置如下：
+```xml
 <build>
         <plugins>
             <plugin>
@@ -32,5 +32,5 @@
             </plugin>
         </plugins>
     </build>
-、、、
+```
 否则会报错找不到对应的包（NoClassDefinitionException）
