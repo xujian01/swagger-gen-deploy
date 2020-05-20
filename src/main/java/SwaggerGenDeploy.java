@@ -1,4 +1,5 @@
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.cli.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -25,6 +26,56 @@ import java.util.Map;
 @Slf4j
 public class SwaggerGenDeploy {
     public static void main(String[] args) {
+        //定义阶段（Definition Stage）
+        Options options = new Options();
+
+        Option opt = new Option("h", "help", false, "Print help");
+        opt.setRequired(false);
+        options.addOption(opt);
+
+        opt =
+                new Option("l", "apiSpec", true,
+                        "Location of api-sepc yaml");
+        opt.setRequired(true);
+        options.addOption(opt);
+
+        opt = new Option("i", "RepositoryId", true, "Id of Maven Repository");
+        opt.setRequired(true);
+        options.addOption(opt);
+
+        opt = new Option("u", "RepositoryUrl", true, "Url of Maven Repository");
+        opt.setRequired(true);
+        options.addOption(opt);
+
+        //解析阶段（Parsing Stage）
+        CommandLineParser parser =new PosixParser();
+        HelpFormatter hf = new HelpFormatter();
+        hf.setWidth(110);
+        CommandLine commandLine = null;
+        try {
+            commandLine = parser.parse(options, args);
+            if (commandLine.hasOption('h')) {
+                hf.printHelp("swaggerdeploy", options, true);
+                System.exit(-1);
+            }
+        } catch (ParseException e) {
+            hf.printHelp("swaggerdeploy", options, true);
+        }
+
+        //询问阶段（Interrogation Stage）
+        Option[] opts = commandLine.getOptions();
+        String[] params = new String[opts.length];
+        if (opts != null) {
+            for (int i=0; i<opts.length; i++) {
+                Option option = opts[i];
+                String name = option.getLongOpt();
+                String value = commandLine.getOptionValue(name);
+                params[i] = value;
+            }
+        }
+        handle(params);
+    }
+    private static void handle(String[] args) {
         //api-spec位置
         String yamlPath = args[0];
         Yaml yaml = new Yaml();
