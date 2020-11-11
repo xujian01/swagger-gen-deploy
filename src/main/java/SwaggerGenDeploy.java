@@ -33,9 +33,7 @@ public class SwaggerGenDeploy {
         opt.setRequired(false);
         options.addOption(opt);
 
-        opt =
-                new Option("l", "apiSpec", true,
-                        "Location of api-sepc yaml");
+        opt = new Option("l", "apiSpec", true, "Location of api-sepc yaml");
         opt.setRequired(true);
         options.addOption(opt);
 
@@ -48,7 +46,7 @@ public class SwaggerGenDeploy {
         options.addOption(opt);
 
         //解析阶段（Parsing Stage）
-        CommandLineParser parser =new PosixParser();
+        CommandLineParser parser =new DefaultParser();
         HelpFormatter hf = new HelpFormatter();
         hf.setWidth(110);
         CommandLine commandLine = null;
