@@ -58,6 +58,7 @@ public class SwaggerGenDeploy {
             }
         } catch (ParseException e) {
             hf.printHelp("swaggerdeploy", options, true);
+            return;
         }
 
         //询问阶段（Interrogation Stage）
