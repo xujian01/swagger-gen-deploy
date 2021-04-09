@@ -94,7 +94,7 @@ public class SwaggerGenDeploy {
             tmpDir.mkdir();
         }
         try {
-            String command1 = "swagger-codegen generate -i "+yamlPath+" -l spring --library spring-cloud -o /tmp/swagger-tmp/"+artifactId+" --api-package "+groupId+".client  --invoker-package "+groupId+".client.invoker --model-package "+groupId+".client.model --group-id="+groupId+" --artifact-id="+artifactId+" --artifact-version="+version;
+            String command1 = "swagger-codegen generate -i "+yamlPath+" -l spring --library spring-cloud -o swagger-tmp/"+artifactId+" --api-package "+groupId+".client  --invoker-package "+groupId+".client.invoker --model-package "+groupId+".client.model --group-id="+groupId+" --artifact-id="+artifactId+" --artifact-version="+version;
             log.info("正在生成代码...");
             Process process1 = Runtime.getRuntime().exec(command1);
             String s1;
