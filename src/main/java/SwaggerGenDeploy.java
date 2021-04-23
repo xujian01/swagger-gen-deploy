@@ -95,7 +95,7 @@ public class SwaggerGenDeploy {
         }
         try {
             String command1 = "swagger-codegen generate -i "+yamlPath
-                    +" -l spring --library spring-cloud -o swagger-tmp/"+artifactId
+                    +" -l spring --library spring-cloud -o /tmp/swagger-tmp/"+artifactId
                     +" --api-package "+groupId+".client  --invoker-package "
                     +groupId+".client.invoker --model-package "+groupId+".client.model --group-id="
                     +groupId+" --artifact-id="+artifactId+" --artifact-version="+version
